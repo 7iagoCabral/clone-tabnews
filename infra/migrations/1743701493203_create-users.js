@@ -1,16 +1,15 @@
-
 exports.up = (pgm) => {
   pgm.createTable("users", {
-    id: { 
+    id: {
       type: "uuid",
       primaryKey: true,
-      default: pgm.func("gen_random_uuid()")
+      default: pgm.func("gen_random_uuid()"),
     },
     // For reference, GitHub limits usernames to 39 characters.
     username: {
       type: "varchar(30)",
       notNull: true,
-      unique: true
+      unique: true,
     },
     // why 254 in length ? https://stackoverflow.com/a/1199238
     email: {
@@ -27,16 +26,13 @@ exports.up = (pgm) => {
     created_at: {
       type: "timestamptz",
       notNull: true,
-      default: pgm.func("now()")
+      default: pgm.func("now()"),
     },
     updated_at: {
       type: "timestamptz",
-      default: pgm.func("now()")
-    }
-
-   
-  })
+      default: pgm.func("now()"),
+    },
+  });
 };
-
 
 exports.down = (pgm) => false;
